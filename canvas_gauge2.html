@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>Gauges with HTML5 Canvas</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="./libs/gauge.min.js"></script>
+    <script src="./libs/radialgauge.min.js"></script>
+</head>
+
+<body>
+
+    <div id="foo"></div>
+    <canvas id="scripted-gauge"></canvas>
+
+    <script>
+         var radial = new RadialGauge({
+        renderTo: 'scripted-gauge'
+    });
+
+    radial.draw();
+
+    </script>
+   
+        
+    </body>
+</html>

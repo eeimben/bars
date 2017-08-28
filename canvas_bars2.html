@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        #bar0,
+        #bar1,
+        #bar2,
+        #bar3 {
+            display: inline-block;
+            text-align: center;
+            padding-top: 5px;
+            padding-bottom: 0px;
+            padding-left: 25px;
+            padding-right: 25px;
+        }
+
+        #score0,
+        #score1,
+        #score2,
+        #score3 {
+            display: inline-block;
+            padding-top: 0px;
+            padding-bottom: 5px;
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+        #gauge0,
+        #gauge1,
+        #gauge2,
+        #gauge3 {
+            display: inline-block;
+            padding-top: 0px;
+            padding-bottom: 0px;
+            padding-left: 25px;
+            padding-right: 25px;
+        }
+    </style>
+
+
+    <script>
+        //Basic rectangle drawing function
+        function drawRect(rect, colr, h) {
+            var canvas = document.getElementById(rect);
+            var ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = colr;
+            var rh = 500 - h;
+            ctx.fillRect(0, rh, 150, 500);
+        }
+//scaledRect draws four rectangales - the tallest is set to max height of the canvas while the others are scaled in proportion to the tallest
+        function scaledRect(h1, h2, h3, h4) {
+            var args = Array.from(arguments);
+            var max = 0;
+            var scale = 0;
+            var heights = [4];
+            var colr = ['orange', 'blue', 'red', 'green'];
+            for (var i = 0; i < 4; i++) {
+                if ((args[i] >= max)) {
+                    max = args[i];
+                }
+            }
+            scale = 500 / max;
+            for (var i = 0; i < 4; i++) {
+                heights[i] = (args[i] * scale);
+                var rname = 'bar' + i.toString();
+                var sname = 'score' + i.toString();
+                drawRect(rname, colr[i], heights[i]);
+                writeValue(sname, colr[i], args[i]);
+            }
+        }
+
+        function writeValue(score_rect, colr, h1) {
+            var canvas = document.getElementById(score_rect);
+            var ctx = canvas.getContext('2d');
+            canvas.width = canvas.width;
+            ctx.font = '60px sans-serif';
+            ctx.textAlign = "center";
+            ctx.fillStyle = colr;
+            ctx.fillText(h1, 95, 80);
+        }
+    </script>
+</head>
+
+<body>
+    <div id="game" align="center">
+        <div id="gauges">
+            <canvas id="gauge0" class="gauge" width="150" height="200"></canvas>
+            <canvas id="gauge1" class="gauge" width="150" height="200"></canvas>
+            <canvas id="gauge2" class="gauge" width="150" height="200"></canvas>
+            <canvas id="gauge3" class="gauge" width="150" height="200"></canvas>
+
+        </div>
+        <div id="bars">
+            <canvas id="bar0" class="bar" width="150" height="500"></canvas>
+            <canvas id="bar1" class="bar" width="150" height="500"></canvas>
+            <canvas id="bar2" class="bar" width="150" height="500"></canvas>
+            <canvas id="bar3" class="bar" width="150" height="500"></canvas>
+        </div>
+        <div id="score">
+            <canvas id="score0" class="score" width="190" height="100"></canvas>
+            <canvas id="score1" class="score" width="190" height="100"></canvas>
+            <canvas id="score2" class="score" width="190" height="100"></canvas>
+            <canvas id="score3" class="score" width="190" height="100"></canvas>
+        </div>
+    </div>
+
+
+    <script>
+        //Test Data
+        scaledRect(0, 0, 0, 0);
+
+        setTimeout(function () {
+            scaledRect(60, 50, 35, 20);
+        }, 500);
+
+        setTimeout(function () {
+            scaledRect(80, 55, 45, 25);
+        }, 1000);
+
+        setTimeout(function () {
+            scaledRect(130, 75, 60, 50);
+        }, 1500);
+
+        setTimeout(function () {
+            scaledRect(160, 115, 100, 80);
+        }, 2000);
+
+        setTimeout(function () {
+            scaledRect(210, 140, 150, 120);
+        }, 2500);
+
+        setTimeout(function () {
+            scaledRect(400, 240, 250, 220);
+        }, 3000);
+
+        setTimeout(function () {
+            scaledRect(600, 340, 450, 520);
+        }, 3500);
+
+        setTimeout(function () {
+            scaledRect(900, 440, 550, 720);
+        }, 4000);
+
+
+        setTimeout(function () {
+            scaledRect(900, 1400, 1200, 1000);
+        }, 4500);
+
+        setTimeout(function () {
+            scaledRect(1900, 14000, 12000, 10000);
+        }, 5000);
+
+        setTimeout(function () {
+            scaledRect(1900, 14000, 999999, 10000);
+        }, 5500);
+    </script>
+
+
+</body>
+
+</html>
